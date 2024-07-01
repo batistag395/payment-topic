@@ -2,13 +2,26 @@ package com.gustavo.payment_service.resource.impl;
 
 import com.gustavo.payment_service.model.Payment;
 import com.gustavo.payment_service.service.PaymentService;
-import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-@Slf4j
+
+import java.io.Serializable;
+
+@RequiredArgsConstructor
+@Log4j2
 @Service
 public class PaymentServiceImpl implements PaymentService {
+
+    private final KafkaTemplate<String, Serializable> kafkaTemplate;
+    @SneakyThrows
     @Override
     public void sendPayment(Payment payment) {
         log.info("PAYMENT_SERVICE_IMPL ::: pagamento recebido {}", payment);
+        Thread.sleep(1000);
+        log.info("Enviado pagamento....");
+        kafkaTemplate.send("payment-topic", payment);
     }
 }
