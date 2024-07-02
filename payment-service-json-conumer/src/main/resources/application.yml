@@ -1,0 +1,6 @@
+server:
+  port: 8100
+spirng:
+  kafka:
+    consumer:
+      bootstrap-serves: localhost:29092
