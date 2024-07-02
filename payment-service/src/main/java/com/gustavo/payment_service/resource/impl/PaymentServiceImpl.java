@@ -4,14 +4,14 @@ import com.gustavo.payment_service.model.Payment;
 import com.gustavo.payment_service.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 
 @RequiredArgsConstructor
-@Log4j2
+@Slf4j
 @Service
 public class PaymentServiceImpl implements PaymentService {
 
